@@ -26,7 +26,13 @@ and open the template in the editor.
                /* $("form").hide();
                 alert("Ocultaste el formulario ;-) "+ $("#nomusuario").}*/
                 if($("#nomusuario").val()!="" && $("#clave").val()!=""){
-                    $("#formulario").submit();
+                    $.ajax({url:"controlador/ValidaUsuario.php"
+                        ,type:'post'
+                        ,data{'nomusuario':$("#nomusuario").val(),'clave':$("#clave").val()}
+                        ,success:function(resultado){
+                            $("#mensaje").html(resultado);
+                        }});
+                 /*   $("#formulario").submit();*/
                 }
                 else
                     alert("debe agregar el usuario y clave");
